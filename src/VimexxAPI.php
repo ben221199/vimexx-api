@@ -16,7 +16,7 @@ class VimexxAPI{
     }
 
     function createURL($prefix,$endpoint){
-        return '/api/v1'.$prefix.$endpoint;
+        return ($this->isTesting?'/testapi':'/api').'/v1'.$prefix.$endpoint;
     }
 
     function fetch(string $method,string $endpoint,array $headers,$body=null){
@@ -47,7 +47,7 @@ class VimexxAPI{
         ]));
     }
 
-    public function getAuthToken(stcring $client_id,string $client_secret,string $username,string $password){
+    public function getAuthToken(string $client_id,string $client_secret,string $username,string $password){
         return $this->fetch('POST','/auth/token',[
             'Content-Type'		=> 'application/x-www-form-urlencoded',
         ],http_build_query([
