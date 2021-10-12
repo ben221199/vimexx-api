@@ -51,10 +51,12 @@ class VimexxAPI{
         return $this->fetch('POST','/auth/token',[
             'Content-Type'		=> 'application/x-www-form-urlencoded',
         ],http_build_query([
+            'grant_type'		=> 'password',
             'client_id'			=> $client_id,
             'client_secret'		=> $client_secret,
             'username'			=> $username,
             'password'			=> $password,
+            'scope'				=> 'whmcs-access',
         ]));
     }
 
